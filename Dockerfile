@@ -18,10 +18,10 @@ RUN addgroup -S appgroup && \
 USER appuser
 WORKDIR /app
 
-#COPY api.py .
-COPY --chown=appuser:appgroup api.py .
+#COPY app.py .
+COPY --chown=appuser:appgroup app.py .
 
 EXPOSE 5000
 
 # TODO: run your service here
-ENTRYPOINT ["/usr/bin/python3", "/app/api.py"]
+ENTRYPOINT ["/usr/bin/python3", "/app/app.py"]
