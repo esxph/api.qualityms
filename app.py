@@ -10,7 +10,7 @@ load_dotenv()
 app = Flask(__name__)
 
 # Set database connection from .env
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL")
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL")+ "?ssl_disabled=true"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize database
