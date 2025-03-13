@@ -15,7 +15,7 @@ services:
       - mysql_data:/var/lib/mysql
 
   api:
-    build: ./app
+    build: ./
     container_name: flask_api
     restart: always
     depends_on:
