@@ -2,6 +2,7 @@ FROM alpine:latest
 
 #Installs python and pip 
 RUN apk add --no-cache  gcc \
+            mysql-client \
             python3 \
             py3-pip \
             libc-dev \
