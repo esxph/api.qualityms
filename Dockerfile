@@ -8,7 +8,7 @@ RUN apk add --no-cache  gcc \
             libffi-dev
 COPY requirements.txt .
 
-RUN pip install -r requirements.txt
+RUN pip install --break-system-packages -r requirements.txt
 
 RUN addgroup -S appgroup && \
     adduser -S -G appgroup appuser && \
