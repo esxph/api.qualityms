@@ -18,10 +18,6 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
 # Routes
-@app.route('/')
-def home():
-    return "Flask API with MySQL and Docker!"
-
 @app.route('/users', methods=['POST'])
 def create_user():
     data = request.get_json()
