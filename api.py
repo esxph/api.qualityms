@@ -37,7 +37,7 @@ def get_users():
 
 @app.route('/')
 def home():
-    return "Flask API with MySQL (qualityms) and Docker is runnin
+    return "Flask API with MySQL (qualityms) and Docker is running"
     
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
