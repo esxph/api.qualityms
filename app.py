@@ -42,10 +42,9 @@ def get_users():
     users = User.query.all()
     return jsonify([{"user_id": user.user_id, "email": user.email, "full_name": user.full_name} for user in users])
 '''
-@app.route('/healthcheck', methods['GET'])
+@app.route('/healthcheck', methods=['GET'])
 def home():
-    return jsonify({"status":"ok"}), 200
-
+    return jsonify({"status": "ok"}), 200
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
