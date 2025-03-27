@@ -4,6 +4,7 @@ FROM alpine:latest
 # Install Python3, pip, gcc (for building some Python packages), and other dependencies
 RUN apk add --no-cache \
     gcc \
+    curl \
     mysql-client \
     python3 \
     py3-pip \
