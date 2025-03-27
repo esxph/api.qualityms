@@ -24,7 +24,10 @@ services:
     ports:
       - "5000:5000"
     environment:
-      DATABASE_URL: mysql+pymysql://$MYSQL_USER:$MYSQL_PASSWORD@db/$MYSQL_DATABASE
+      MYSQL_HOST: db
+      MYSQL_DATABASE: $MYSQL_DATABASE
+      MYSQL_USER: $MYSQL_USER
+      MYSQL_PASSWORD: $MYSQL_PASSWORD
 
 volumes:
   mysql_data:

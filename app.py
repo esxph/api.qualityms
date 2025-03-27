@@ -1,8 +1,8 @@
 import os
+import mysql.connector
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
 from dotenv import load_dotenv
+
 
 # Load environment variables
 load_dotenv()
@@ -10,14 +10,25 @@ load_dotenv()
 app = Flask(__name__)
 
 # Set database connection from .env
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL")+ "?ssl_disabled=true"
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['DB_HOST'] = os.getenv("MYSQL_HOST")
+app.config['DB_USER'] = os.getenv("MYSQL_USER")
+app.config['DB_PASSWORD'] = os.getenv("MYSQL_PASSWORD")
+app.config['DB_NAME'] = os.getenv("MYSQL_DATABASE")
 
-# Initialize database
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
 
-# Routes
+def get_db_connection():
+    """
+    Create and return a new database connection using mysql-connector-python.
+    In production, you might want to use a connection pool instead of creating a new connection each time.
+    """
+    return mysql.connector.connect(
+        host=app.config['DB_HOST'],
+        user=app.config['DB_USER'],
+        password=app.config['DB_PASSWORD'],
+        database=app.config['DB_NAME']
+    )
+
+'''# Routes
 @app.route('/users', methods=['POST'])
 def create_user():
     data = request.get_json()
@@ -30,10 +41,11 @@ def create_user():
 def get_users():
     users = User.query.all()
     return jsonify([{"user_id": user.user_id, "email": user.email, "full_name": user.full_name} for user in users])
-
-@app.route('/')
+'''
+@app.route('/healthcheck', methods['GET'])
 def home():
-    return "Flask API with MySQL (qualityms) and Docker is running"
-    
+    return jsonify({"status":"ok"}), 200
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
