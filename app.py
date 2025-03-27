@@ -43,7 +43,7 @@ def get_users():
     return jsonify([{"user_id": user.user_id, "email": user.email, "full_name": user.full_name} for user in users])
 '''
 @app.route('/healthcheck', methods=['GET'])
-def home():
+def healthcheck():
     return jsonify({"status": "ok"}), 200
 
 if __name__ == '__main__':
