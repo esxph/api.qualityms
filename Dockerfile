@@ -11,10 +11,10 @@ RUN apk add --no-cache \
     libffi-dev
 
 # Copy in requirements to install Python dependencies
-COPY requirements.txt /app/requirements.txt
+COPY requirements.txt .
 
 # Install Python dependencies
-RUN pip install --break-system-packages -r /app/requirements.txt
+RUN pip install --break-system-packages -r requirements.txt
 
 # Create a non-root user and a directory for the app
 RUN addgroup -S appgroup && \
