@@ -46,5 +46,23 @@ def get_users():
 def healthcheck():
     return jsonify({"status": "ok"}), 200
 
+@app.route('/get-users', methods=['GET'])
+def get_users():
+    try:
+        connection = get_db_connection()
+        cursos = connection.cursor(dictionary=True)
+        query = "SELECT * FROM Users;"
+        cursor.execute("SELECT * FROM Users")
+        query_result = cursor.fetchall()
+
+        #Closes the current connection and clears the cursor
+        cursor.close()
+        connection.close()
+        
+        return jsonify(query_result), 200
+
+    except mysql.connector.Error as err:
+        return jsonify({"error": str(err)}), 500
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
