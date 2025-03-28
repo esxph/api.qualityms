@@ -50,7 +50,7 @@ def healthcheck():
 def get_users():
     try:
         connection = get_db_connection()
-        cursos = connection.cursor(dictionary=True)
+        cursor = connection.cursor(dictionary=True)
         query = "SELECT * FROM Users;"
         cursor.execute("SELECT * FROM Users")
         query_result = cursor.fetchall()
