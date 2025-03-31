@@ -4,3 +4,5 @@ Flask-Migrate
 PyMySQL
 python-dotenv
 mysql-connector-python
+Flask-JWT-Extended
+werkzeug
